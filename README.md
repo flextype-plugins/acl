@@ -1,4 +1,4 @@
-<h1 align="center">Acl Plugin for <a href="http://flextype.org/">Flextype</a></h1>
+<h1 align="center">ACL Plugin for <a href="http://flextype.org/">Flextype</a></h1>
 
 <p align="center">
 <a href="https://github.com/flextype-plugins/acl/releases"><img alt="Version" src="https://img.shields.io/github/release/flextype-plugins/acl.svg?label=version&color=black"></a> <a href="https://github.com/flextype-plugins/acl"><img src="https://img.shields.io/badge/license-MIT-blue.svg?color=black" alt="License"></a> <a href="https://github.com/flextype-plugins/acl"><img src="https://img.shields.io/github/downloads/flextype-plugins/acl/total.svg?color=black" alt="Total downloads"></a> <a href="https://github.com/flextype/flextype"><img src="https://img.shields.io/badge/Flextype-0.9.8-green.svg" alt="Flextype"></a> <a href=""><img src="https://img.shields.io/discord/423097982498635778.svg?logo=discord&color=black&label=Discord%20Chat" alt="Discord"></a>
