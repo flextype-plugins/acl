@@ -13,7 +13,7 @@ use Flextype\Component\Session\Session;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class ACLIsUserLoggedInMiddleware extends Container
+class AclAccountIsUserLoggedInMiddleware extends Container
 {
     /**
      * __invoke
