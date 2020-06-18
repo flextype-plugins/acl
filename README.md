@@ -34,6 +34,15 @@ The following dependencies need to be downloaded and installed for Acl Plugin.
 | enabled | true | true or false to disable the plugin |
 | priority | 80 | accounts plugin priority |
 
+### Active Session Variables
+
+| Name |
+|---|
+| `account_is_user_logged_in` |
+| `account_username` |
+| `account_roles` |
+| `account_uuid` |
+
 ### Restrict access in the entries frontmatter
 
 You may restrict access for specific users to your entry(entries) in the entry(entries) frontmatter.
