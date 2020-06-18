@@ -16,7 +16,7 @@ use function is_file;
 /**
  * Ensure vendor libraries exist
  */
-! is_file($accounts_autoload = __DIR__ . '/vendor/autoload.php') and exit('Please run: <i>composer install</i> for accounts plugin');
+! is_file($acl_autoload = __DIR__ . '/vendor/autoload.php') and exit('Please run: <i>composer install</i> for acl plugin');
 
 /**
  * Register The Auto Loader
@@ -27,7 +27,7 @@ use function is_file;
  * loading any of our classes later on. It feels nice to relax.
  * Register The Auto Loader
  */
-$accounts_loader = require_once $accounts_autoload;
+$acl_loader = require_once $acl_autoload;
 
 /**
  * Include dependencies
