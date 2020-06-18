@@ -11,30 +11,11 @@ declare(strict_types=1);
 
 namespace Flextype;
 
-use Flextype\Component\Arr\Arr;
-use Flextype\Component\Filesystem\Filesystem;
 use Flextype\Component\Session\Session;
-use PHPMailer\PHPMailer\PHPMailer;
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
-use Ramsey\Uuid\Uuid;
-use Slim\Http\Environment;
-use Slim\Http\Uri;
-use const PASSWORD_BCRYPT;
 use function array_intersect;
 use function array_map;
-use function array_merge;
-use function bin2hex;
-use function date;
 use function explode;
-use function Flextype\Component\I18n\__;
 use function in_array;
-use function password_hash;
-use function password_verify;
-use function random_bytes;
-use function strtr;
-use function time;
-use function trim;
 
 class Acl extends Container
 {
