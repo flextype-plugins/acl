@@ -9,20 +9,23 @@ $flextype->emitter->addListener('onEntryAfterInitialized', function() use ($flex
     // Get current entry
     $entry = $flextype->entries->entry;
 
-    if (isset($entry['access']['accounts']['uuids'])) {
-        if (!$flextype->acl->isUserLoggedInUuidsOneOf($entry['access']['accounts']['uuids'])) {
+    // Set ACL rules based on accounts uuids
+    if (isset($entry['acl']['accounts']['uuids'])) {
+        if (!$flextype->acl->isUserLoggedInUuidsOneOf($entry['acl']['accounts']['uuids'])) {
             $flextype->entries->entry = [];
         }
     }
 
-    if (isset($entry['access']['accounts']['usernames'])) {
-        if (!$flextype->acl->isUserLoggedInUsernameOneOf($entry['access']['accounts']['usernames'])) {
+    // Set ACL rules based on accounts usernames
+    if (isset($entry['acl']['accounts']['usernames'])) {
+        if (!$flextype->acl->isUserLoggedInUsernameOneOf($entry['acl']['accounts']['usernames'])) {
             $flextype->entries->entry = [];
         }
     }
 
-    if (isset($entry['access']['accounts']['roles'])) {
-        if (!$flextype->acl->isUserLoggedInRolesOneOf($entry['access']['accounts']['roles'])) {
+    // Set ACL rules based on accounts roles
+    if (isset($entry['acl']['accounts']['roles'])) {
+        if (!$flextype->acl->isUserLoggedInRolesOneOf($entry['acl']['accounts']['roles'])) {
             $flextype->entries->entry = [];
         }
     }

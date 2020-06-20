@@ -6,12 +6,12 @@
 
 ## Features
 
-* Simple and Flexible ACL(Access Control List) for any entries or any specific data.
+* Simple and Flexible ACL(Access Control List) functionality for any entries or any specific data.
 * Built in Shortcodes and Twig functions to restrict access for specific users in the entries content and templates.  
 
 ## Dependencies
 
-The following dependencies need to be downloaded and installed for Acl Plugin.
+The following dependencies need to be downloaded and installed for ACL Plugin.
 
 | Item | Version | Download |
 |---|---|---|
@@ -23,7 +23,7 @@ The following dependencies need to be downloaded and installed for Acl Plugin.
 
 1. Download & Install all required dependencies.
 2. Create new folder `/project/plugins/acl`
-3. Download Acl Plugin and unzip plugin content to the folder `/project/plugins/acl`
+3. Download ACL Plugin and unzip plugin content to the folder `/project/plugins/acl`
 
 ## Documentation
 
@@ -32,7 +32,7 @@ The following dependencies need to be downloaded and installed for Acl Plugin.
 | Key | Value | Description |
 |---|---|---|
 | enabled | true | true or false to disable the plugin |
-| priority | 80 | accounts plugin priority |
+| priority | 95 | accounts plugin priority |
 
 ### Active Session Variables
 
@@ -44,6 +44,20 @@ The following dependencies need to be downloaded and installed for Acl Plugin.
 | `account_uuid` | Logged in user uuid |
 
 ### Middlewares
+
+#### Name
+`AclAccountIsUserLoggedInMiddleware`
+
+#### Paramaters
+| Name | Description |
+|---|---|
+| container | Flextype container |
+| redirect | Route name to redirect if user is not logged in |
+
+#### Example
+```
+$app->get('/my-route', 'MyController:method()')->setName('my.route.name')->add(new AclAccountIsUserLoggedInMiddleware(['container' => $flextype, 'redirect' => 'another.route.name']));
+```
 
 | Name |
 |---|

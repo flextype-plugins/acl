@@ -53,28 +53,93 @@ class AclTwig
         $this->flextype = $flextype;
     }
 
-    public function isUserLoggedIn()
+    /**
+     * Check is user logged in
+     *
+     * @return bool true if user is logged in or false if not
+     *
+     * @access public
+     */
+    public function isUserLoggedIn() : bool
     {
         return $this->flextype->acl->isUserLoggedIn();
     }
 
-    public function getUserLoggedInUsername()
+    /**
+     * Get user logged in username
+     *
+     * @return string user logged in username
+     *
+     * @access public
+     */
+    public function getUserLoggedInUsername() : string
     {
         return $this->flextype->acl->getUserLoggedInUsername();
     }
 
-    public function getUserLoggedInRoles()
+    /**
+     * Get user logged in roles
+     *
+     * @return string user logged in roles
+     *
+     * @access public
+     */
+    public function getUserLoggedInRoles() : string
     {
         return $this->flextype->acl->getUserLoggedInRoles();
     }
 
-    public function getUserLoggedInUuid()
+    /**
+     * Get user logged in uuid
+     *
+     * @return string user logged in uuid
+     *
+     * @access public
+     */
+    public function getUserLoggedInUuid() : string
     {
         return $this->flextype->acl->getUserLoggedInUuid();
     }
 
-    public function isUserLoggedInRolesOneOf($roles)
+    /**
+     * Check is user logged in roles one of
+     *
+     * @param string $roles Roles separated by comma.
+     *
+     * @return bool true if equal or false if not
+     *
+     * @access public
+     */
+    public function isUserLoggedInRolesOneOf($roles) : bool
     {
         return $this->flextype->acl->isUserLoggedInRolesOneOf($roles);
+    }
+
+    /**
+     * Check is user logged in usernames one of
+     *
+     * @param string $usernames Usernames separated by comma.
+     *
+     * @return bool true if equal or false if not
+     *
+     * @access public
+     */
+    public function isUserLoggedInUsernameOneOf(string $usernames) : bool
+    {
+        return $this->flextype->acl->isUserLoggedInUsernameOneOf($usernames);
+    }
+
+    /**
+     * Check is user logged in uuid one of
+     *
+     * @param string $uuids Uuids separated by comma.
+     *
+     * @return bool true if equal or false if not
+     *
+     * @access public
+     */
+    public function isUserLoggedInUuidOneOf(string $uuids) : bool
+    {
+        return $this->flextype->acl->isUserLoggedInUuidOneOf($uuids);
     }
 }
