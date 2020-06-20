@@ -56,7 +56,10 @@ The following dependencies need to be downloaded and installed for ACL Plugin.
 
 #### Example
 ```
-$app->get('/my-route', 'MyController:method()')->setName('my.route.name')->add(new AclAccountIsUserLoggedInMiddleware(['container' => $flextype, 'redirect' => 'another.route.name']));
+$app->get('/my-route', 'MyController:method()')
+     ->setName('my.route.name')
+     ->add(new AclAccountIsUserLoggedInMiddleware(['container' => $flextype,
+                                                   'redirect' => 'another.route.name']));
 ```
 
 | Name |
