@@ -62,10 +62,28 @@ $app->get('/my-route', 'MyController:method()')
                                                    'redirect' => 'another.route.name']));
 ```
 
+#### Name
+`AclAccountsIsUserLoggedInRolesOneOfMiddleware`
+
+#### Paramaters
+| Name | Description |
+|---|---|
+| container | Flextype container |
+| roles | Roles separated by comma. |
+| redirect | Route name to redirect if user is not logged in |
+
+#### Example
+```
+$app->get('/my-route', 'MyController:method()')
+     ->setName('my.route.name')
+     ->add(new AclAccountsIsUserLoggedInRolesOneOfMiddleware(['container' => $flextype,
+                                                              'roles' => 'admin, moderator'
+                                                              'redirect' => 'another.route.name']));
+```
+
+
 | Name |
 |---|
-| `AclAccountIsUserLoggedInMiddleware` |
-| `AclAccountsIsUserLoggedInRolesOneOfMiddleware` |
 | `AclAccountsIsUserLoggedInUsernameOneOfMiddleware` |
 | `AclAccountsIsUserLoggedInUuidOneOfMiddleware` |
 
