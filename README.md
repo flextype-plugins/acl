@@ -36,12 +36,21 @@ The following dependencies need to be downloaded and installed for Acl Plugin.
 
 ### Active Session Variables
 
+| Name | Description |
+|---|---|
+| `account_is_user_logged_in` | true or false |
+| `account_username` | Logged in username |
+| `account_roles` | Looged in user roles |
+| `account_uuid` | Logged in user uuid |
+
+### Middlewares
+
 | Name |
 |---|
-| `account_is_user_logged_in` |
-| `account_username` |
-| `account_roles` |
-| `account_uuid` |
+| `AclAccountIsUserLoggedInMiddleware` |
+| `AclAccountsIsUserLoggedInRolesOneOfMiddleware` |
+| `AclAccountsIsUserLoggedInUsernameOneOfMiddleware` |
+| `AclAccountsIsUserLoggedInUuidOneOfMiddleware` |
 
 ### Restrict access in the entries frontmatter
 
