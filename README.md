@@ -293,22 +293,22 @@ You may restrict access for specific users to your specific content inside the T
 #### Show logged in username
 
 ```
-Hello {{ accounts.getUserLoggedInUsername }}
+Hello {{ accounts.getUserLoggedInUsername() }}
 ```
 
 #### Show logged in uuid
 
 ```
-Hello {{ accounts.getUserLoggedInUsername }},
-your uuid: {{ accounts.getUserLoggedInUuid }}
+Hello {{ accounts.getUserLoggedInUsername() }},
+your uuid: {{ accounts.getUserLoggedInUuid() }}
 ```
 
 #### Show logged in roles
 
 ```
-Hello {{ accounts.getUserLoggedInUsername }},
-your uuid: {{ accounts.getUserLoggedInUuid }}
-and your roles: {{ accounts.getUserLoggedInRoles }}
+Hello {{ accounts.getUserLoggedInUsername() }},
+your uuid: {{ accounts.getUserLoggedInUuid() }}
+and your roles: {{ accounts.getUserLoggedInRoles() }}
 ```
 
 ### Restrict access in the PHP
