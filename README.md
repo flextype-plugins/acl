@@ -38,10 +38,10 @@ The following dependencies need to be downloaded and installed for ACL Plugin.
 
 | Name | Description |
 |---|---|
-| `account_is_user_logged_in` | true or false |
-| `account_username` | Logged in username |
-| `account_roles` | Looged in user roles |
-| `account_uuid` | Logged in user uuid |
+| account_is_user_logged_in | true or false |
+| account_username | Logged in username |
+| account_roles | Looged in user roles |
+| account_uuid | Logged in user uuid |
 
 ### Middlewares
 
@@ -70,7 +70,7 @@ $app->get('/my-route', 'MyController:method()')
 |---|---|
 | container | Flextype container |
 | roles | Roles separated by comma. |
-| redirect | Route name to redirect if user is not logged in |
+| redirect | Route name to redirect if not equal |
 
 #### Example
 ```
@@ -81,11 +81,43 @@ $app->get('/my-route', 'MyController:method()')
                                                               'redirect' => 'another.route.name']));
 ```
 
+#### Name
+`AclAccountsIsUserLoggedInUsernameOneOfMiddleware`
 
-| Name |
-|---|
-| `AclAccountsIsUserLoggedInUsernameOneOfMiddleware` |
-| `AclAccountsIsUserLoggedInUuidOneOfMiddleware` |
+#### Paramaters
+| Name | Description |
+|---|---|
+| container | Flextype container |
+| usernames | Userames separated by comma. |
+| redirect | Route name to redirect if not equal |
+
+#### Example
+```
+$app->get('/my-route', 'MyController:method()')
+     ->setName('my.route.name')
+     ->add(new AclAccountsIsUserLoggedInUsernameOneOfMiddleware(['container' => $flextype,
+                                                              'usernames' => 'jack, sam'
+                                                              'redirect' => 'another.route.name']));
+```
+
+#### Name
+`AclAccountsIsUserLoggedInUuidOneOfMiddleware`
+
+#### Paramaters
+| Name | Description |
+|---|---|
+| container | Flextype container |
+| uuids | Userames separated by comma. |
+| redirect | Route name to redirect if not equal |
+
+#### Example
+```
+$app->get('/my-route', 'MyController:method()')
+     ->setName('my.route.name')
+     ->add(new AclAccountsIsUserLoggedInUsernameOneOfMiddleware(['container' => $flextype,
+                                                              'uuids' => 'ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2, d549af27-79a0-44f2-b9b1-e82b47bf87e2'
+                                                              'redirect' => 'another.route.name']));
+```
 
 ### Restrict access in the entries frontmatter
 
@@ -96,7 +128,7 @@ You may restrict access for specific users to your entry(entries) in the entry(e
 ```
 ---
 title: Lesson 42
-access:
+acl:
   accounts:
     roles: student, admin
     usernames: jack, sam
