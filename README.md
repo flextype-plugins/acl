@@ -261,7 +261,7 @@ You may restrict access for specific users to your specific content inside the T
 #### Show private content for logged in users
 
 ```
-{% if accounts.isUserLoggedIn() %}
+{% if acl.isUserLoggedIn() %}
     Private content here..
 {% endif %}
 ```
@@ -269,7 +269,7 @@ You may restrict access for specific users to your specific content inside the T
 #### Show private content for users with roles: admin and student
 
 ```
-{% if accounts.isUserLoggedInRolesOneOf('admin, student') %}
+{% if acl.isUserLoggedInRolesOneOf('admin, student') %}
     Private content here..
 {% endif %}
 ```
@@ -277,7 +277,7 @@ You may restrict access for specific users to your specific content inside the T
 #### Show private content for users with uuids ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2 and d549af27-79a0-44f2-b9b1-e82b47bf87e2
 
 ```
-{% if accounts.isUserLoggedInUuidOneOf('ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2, d549af27-79a0-44f2-b9b1-e82b47bf87e2') %}
+{% if acl.isUserLoggedInUuidOneOf('ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2, d549af27-79a0-44f2-b9b1-e82b47bf87e2') %}
     Private content here..
 {% endif %}
 ```
@@ -285,7 +285,7 @@ You may restrict access for specific users to your specific content inside the T
 #### Show private content for users with usernames jack, sam
 
 ```
-{% if accounts.isUserLoggedInUsernameOneOf('jack, sam') %}
+{% if acl.isUserLoggedInUsernameOneOf('jack, sam') %}
     Private content here..
 {% endif %}
 ```
@@ -293,22 +293,22 @@ You may restrict access for specific users to your specific content inside the T
 #### Show logged in username
 
 ```
-Hello {{ accounts.getUserLoggedInUsername() }}
+Hello {{ acl.getUserLoggedInUsername() }}
 ```
 
 #### Show logged in uuid
 
 ```
-Hello {{ accounts.getUserLoggedInUsername() }},
-your uuid: {{ accounts.getUserLoggedInUuid() }}
+Hello {{ acl.getUserLoggedInUsername() }},
+your uuid: {{ acl.getUserLoggedInUuid() }}
 ```
 
 #### Show logged in roles
 
 ```
-Hello {{ accounts.getUserLoggedInUsername() }},
-your uuid: {{ accounts.getUserLoggedInUuid() }}
-and your roles: {{ accounts.getUserLoggedInRoles() }}
+Hello {{ acl.getUserLoggedInUsername() }},
+your uuid: {{ acl.getUserLoggedInUuid() }}
+and your roles: {{ acl.getUserLoggedInRoles() }}
 ```
 
 ### Restrict access in the PHP
