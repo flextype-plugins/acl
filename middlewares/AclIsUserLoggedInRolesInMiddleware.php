@@ -12,7 +12,7 @@ namespace Flextype;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class AclAccountsIsUserLoggedInUuidOneOfMiddleware extends Container
+class AclIsUserLoggedInRolesInMiddleware extends Container
 {
     /**
      * Middleware Settings
@@ -38,7 +38,7 @@ class AclAccountsIsUserLoggedInUuidOneOfMiddleware extends Container
      */
     public function __invoke(Request $request, Response $response, callable $next) : Response
     {
-        if ($this->acl->isUserLoggedInUuidOneOf($this->settings['uuid'])) {
+        if ($this->acl->isUserLoggedInRolesIn($this->settings['roles'])) {
             $response = $next($request, $response);
         } else {
             $response = $response->withRedirect($this->router->pathFor($this->settings['redirect']));

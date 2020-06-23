@@ -38,15 +38,15 @@ The following dependencies need to be downloaded and installed for ACL Plugin.
 
 | Name | Description |
 |---|---|
-| account_is_user_logged_in | true or false |
-| account_username | Logged in username |
-| account_roles | Looged in user roles |
-| account_uuid | Logged in user uuid |
+| user_is_logged_in | true or false |
+| user_email | Logged in email |
+| user_roles | Looged in user roles |
+| user_uuid | Logged in user uuid |
 
 ### Middlewares
 
 #### Name
-`AclAccountIsUserLoggedInMiddleware`
+`AclIsUserLoggedInMiddleware`
 
 #### Paramaters
 | Name | Description |
@@ -58,12 +58,12 @@ The following dependencies need to be downloaded and installed for ACL Plugin.
 ```
 $app->get('/my-route', 'MyController:method()')
      ->setName('my.route.name')
-     ->add(new AclAccountIsUserLoggedInMiddleware(['container' => $flextype,
-                                                   'redirect' => 'another.route.name']));
+     ->add(new AclIsUserLoggedInMiddleware(['container' => $flextype,
+                                            'redirect' => 'another.route.name']));
 ```
 
 #### Name
-`AclAccountsIsUserLoggedInRolesOneOfMiddleware`
+`AclAccountsIsUserLoggedInRolesInMiddleware`
 
 #### Paramaters
 | Name | Description |
@@ -76,47 +76,120 @@ $app->get('/my-route', 'MyController:method()')
 ```
 $app->get('/my-route', 'MyController:method()')
      ->setName('my.route.name')
-     ->add(new AclAccountsIsUserLoggedInRolesOneOfMiddleware(['container' => $flextype,
+     ->add(new AclAccountsIsUserLoggedInRolesInMiddleware(['container' => $flextype,
+                                                           'roles' => 'admin, moderator'
+                                                           'redirect' => 'another.route.name']));
+```
+
+#### Name
+`AclIsUserLoggedInEmailsInMiddleware`
+
+#### Paramaters
+| Name | Description |
+|---|---|
+| container | Flextype container |
+| emails | Emails separated by comma. |
+| redirect | Route name to redirect if not equal |
+
+#### Example
+```
+$app->get('/my-route', 'MyController:method()')
+     ->setName('my.route.name')
+     ->add(new AclIsUserLoggedInEmailsInMiddleware(['container' => $flextype,
+                                                    'emails' => 'jack@flextype.org, jack@flextype.org'
+                                                    'redirect' => 'another.route.name']));
+```
+
+#### Name
+`AclIsUserLoggedInUuidInMiddleware`
+
+#### Paramaters
+| Name | Description |
+|---|---|
+| container | Flextype container |
+| uuids | Uuids separated by comma. |
+| redirect | Route name to redirect if not equal |
+
+#### Example
+```
+$app->get('/my-route', 'MyController:method()')
+     ->setName('my.route.name')
+     ->add(new AclIsUserLoggedInUuidInMiddleware(['container' => $flextype,
+                                                  'uuids' => 'ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2, d549af27-79a0-44f2-b9b1-e82b47bf87e2'
+                                                  'redirect' => 'another.route.name']));
+```
+#### Name
+`AclIsUserNotLoggedInMiddleware`
+
+#### Paramaters
+| Name | Description |
+|---|---|
+| container | Flextype container |
+| redirect | Route name to redirect if user is not logged in |
+
+#### Example
+```
+$app->get('/my-route', 'MyController:method()')
+     ->setName('my.route.name')
+     ->add(new AclIsUserNotLoggedInMiddleware(['container' => $flextype,
+                                               'redirect' => 'another.route.name']));
+```
+
+#### Name
+`AclAccountsIsUserLoggedInRolesNotInMiddleware`
+
+#### Paramaters
+| Name | Description |
+|---|---|
+| container | Flextype container |
+| roles | Roles separated by comma. |
+| redirect | Route name to redirect if equal |
+
+#### Example
+```
+$app->get('/my-route', 'MyController:method()')
+     ->setName('my.route.name')
+     ->add(new AclAccountsIsUserLoggedInRolesNotInMiddleware(['container' => $flextype,
                                                               'roles' => 'admin, moderator'
                                                               'redirect' => 'another.route.name']));
 ```
 
 #### Name
-`AclAccountsIsUserLoggedInUsernameOneOfMiddleware`
+`AclIsUserLoggedInEmailsNotInMiddleware`
 
 #### Paramaters
 | Name | Description |
 |---|---|
 | container | Flextype container |
-| usernames | Userames separated by comma. |
-| redirect | Route name to redirect if not equal |
+| emails | Emails separated by comma. |
+| redirect | Route name to redirect if equal |
 
 #### Example
 ```
 $app->get('/my-route', 'MyController:method()')
      ->setName('my.route.name')
-     ->add(new AclAccountsIsUserLoggedInUsernameOneOfMiddleware(['container' => $flextype,
-                                                              'usernames' => 'jack, sam'
-                                                              'redirect' => 'another.route.name']));
+     ->add(new AclIsUserLoggedInEmailsNotInMiddleware(['container' => $flextype,
+                                                       'emails' => 'jack@flextype.org, sam@flextype.org'
+                                                       'redirect' => 'another.route.name']));
 ```
 
 #### Name
-`AclAccountsIsUserLoggedInUuidOneOfMiddleware`
+`AclIsUserLoggedInUuidNotInMiddleware`
 
 #### Paramaters
 | Name | Description |
 |---|---|
 | container | Flextype container |
-| uuids | Userames separated by comma. |
-| redirect | Route name to redirect if not equal |
+| uuids | Uuids separated by comma. |
+| redirect | Route name to redirect if equal |
 
 #### Example
 ```
 $app->get('/my-route', 'MyController:method()')
      ->setName('my.route.name')
-     ->add(new AclAccountsIsUserLoggedInUsernameOneOfMiddleware(['container' => $flextype,
-                                                              'uuids' => 'ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2, d549af27-79a0-44f2-b9b1-e82b47bf87e2'
-                                                              'redirect' => 'another.route.name']));
+     ->add(new AclIsUserLoggedInUuidNotInMiddleware(['container' => $flextype,
+                                                     'uuids' => 'ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2, d549af27-79a0-44f2-b9b1-e82b47bf87e2'
+                                                     'redirect' => 'another.route.name']));
 ```
 
 ### Restrict access in the entries frontmatter
@@ -131,7 +204,7 @@ title: Lesson 42
 acl:
   accounts:
     roles: student, admin
-    usernames: jack, sam
+    emails: jack@flextype.org, sam@flextype.org
     uuids: ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2, d549af27-79a0-44f2-b9b1-e82b47bf87e2
 ---
 Lesson content is here...
@@ -166,9 +239,9 @@ title: Lesson 42
 ---
 Public text here...
 
-[userLoggedInRolesOneOf roles="admin, student"]
+[userLoggedInRolesIn roles="admin, student"]
     Private content here..
-[/userLoggedInRolesOneOf]
+[/userLoggedInRolesIn]
 ```
 
 #### Show private content for users with uuids ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2 and d549af27-79a0-44f2-b9b1-e82b47bf87e2
@@ -181,12 +254,12 @@ title: Lesson 42
 ---
 Public text here...
 
-[userLoggedInUuidOneOf uuids="ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2, d549af27-79a0-44f2-b9b1-e82b47bf87e2"]
+[userLoggedInUuidIn uuids="ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2, d549af27-79a0-44f2-b9b1-e82b47bf87e2"]
     Private content here..
-[/userLoggedInUuidOneOf]
+[/userLoggedInUuidIn]
 ```
 
-#### Show private content for users with usernames jack, sam
+#### Show private content for users with emails jack@flextype.org, sam@flextype.org
 
 `/project/entries/lessons/lesson-42.md`
 
@@ -196,12 +269,12 @@ title: Lesson 42
 ---
 Public text here...
 
-[userLoggedInUsernameOneOf usernames="jack, sam"]
+[userLoggedInEmailIn emails="jack@flextype.org, sam@flextype.org"]
     Private content here..
-[/userLoggedInUsernameOneOf]
+[/userLoggedInEmailIn]
 ```
 
-#### Show logged in username
+#### Show logged in email
 
 `/project/entries/lessons/lesson-42.md`
 
@@ -210,7 +283,7 @@ Public text here...
 title: Lesson 42
 ---
 
-Hello [userLoggedInUsername]
+Hello [userLoggedInEmail]
 ```
 
 #### Show logged in uuid
@@ -222,7 +295,7 @@ Hello [userLoggedInUsername]
 title: Lesson 42
 ---
 
-Hello [userLoggedInUsername], your uuid: [userLoggedInUuid]
+Hello [userLoggedInEmail], your uuid: [userLoggedInUuid]
 ```
 
 #### Show logged in roles
@@ -234,7 +307,7 @@ Hello [userLoggedInUsername], your uuid: [userLoggedInUuid]
 title: Lesson 42
 ---
 
-Hello [userLoggedInUsername], your uuid: [userLoggedInUuid] and your roles: [userLoggedInRole]
+Hello [userLoggedInEmail], your uuid: [userLoggedInUuid] and your roles: [userLoggedInRole]
 ```
 
 #### Also you may use any of this shortcodes inside any entry fields:
@@ -245,7 +318,7 @@ Example:
 
 ```
 ---
-title: [userLoggedIn][userLoggedInUsername] - [/userLoggedIn]Lesson 42
+title: [userLoggedIn][userLoggedInEmail] - [/userLoggedIn]Lesson 42
 ---
 Public text here...
 
@@ -253,6 +326,120 @@ Public text here...
     Private content here..
 [/userLoggedIn]
 ```
+
+#### Show public content for not logged in users
+
+`/project/entries/lessons/lesson-42.md`
+
+```
+---
+title: Lesson 42
+---
+Public text here...
+
+[userNotLoggedIn]
+    Public content for users is here...
+[/userNotLoggedIn]
+```
+
+#### Show private content for users with roles: admin and student
+
+`/project/entries/lessons/lesson-42.md`
+
+```
+---
+title: Lesson 42
+---
+Public text here...
+
+[userLoggedInRolesNotIn roles="admin, student"]
+    Public content for users is here...
+[/userLoggedInRolesNotIn]
+```
+
+#### Show private content for users with uuids ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2 and d549af27-79a0-44f2-b9b1-e82b47bf87e2
+
+`/project/entries/lessons/lesson-42.md`
+
+```
+---
+title: Lesson 42
+---
+Public text here...
+
+[userLoggedInUuidNotIn uuids="ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2, d549af27-79a0-44f2-b9b1-e82b47bf87e2"]
+    Public content for users is here...
+[/userLoggedInUuidNotIn]
+```
+
+#### Show private content for users with emails jack@flextype.org, sam@flextype.org
+
+`/project/entries/lessons/lesson-42.md`
+
+```
+---
+title: Lesson 42
+---
+Public text here...
+
+[userLoggedInEmailNotIn emails="jack@flextype.org, sam@flextype.org"]
+    Public content for users is here...
+[/userLoggedInEmailNotIn]
+```
+
+#### Show logged in email
+
+`/project/entries/lessons/lesson-42.md`
+
+```
+---
+title: Lesson 42
+---
+
+Hello [userLoggedInEmail]
+```
+
+#### Show logged in uuid
+
+`/project/entries/lessons/lesson-42.md`
+
+```
+---
+title: Lesson 42
+---
+
+Hello [userLoggedInEmail], your uuid: [userLoggedInUuid]
+```
+
+#### Show logged in roles
+
+`/project/entries/lessons/lesson-42.md`
+
+```
+---
+title: Lesson 42
+---
+
+Hello [userLoggedInEmail], your uuid: [userLoggedInUuid] and your roles: [userLoggedInRole]
+```
+
+#### Also you may use any of this shortcodes inside any entry fields:
+
+Example:
+
+`/project/entries/lessons/lesson-42.md`
+
+```
+---
+title: [userLoggedIn][userLoggedInEmail] - [/userLoggedIn]Lesson 42
+---
+Public text here...
+
+[userLoggedIn]
+    Private content here..
+[/userLoggedIn]
+```
+
 
 ### Restrict access in the TWIG Templates
 
@@ -263,50 +450,58 @@ You may restrict access for specific users to your specific content inside the T
 ```
 {% if acl.isUserLoggedIn() %}
     Private content here..
+{% else %}
+    Public content for users is here...
 {% endif %}
 ```
 
 #### Show private content for users with roles: admin and student
 
 ```
-{% if acl.isUserLoggedInRolesOneOf('admin, student') %}
+{% if acl.isUserLoggedInRolesIn('admin, student') %}
     Private content here..
+{% else %}
+    Public content for users is here...
 {% endif %}
 ```
 
 #### Show private content for users with uuids ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2 and d549af27-79a0-44f2-b9b1-e82b47bf87e2
 
 ```
-{% if acl.isUserLoggedInUuidOneOf('ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2, d549af27-79a0-44f2-b9b1-e82b47bf87e2') %}
+{% if acl.isUserLoggedInUuidIn('ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2, d549af27-79a0-44f2-b9b1-e82b47bf87e2') %}
     Private content here..
+{% else %}
+    Public content for users is here...
 {% endif %}
 ```
 
-#### Show private content for users with usernames jack, sam
+#### Show private content for users with emails jack@flextype.org, sam@flextype.org
 
 ```
-{% if acl.isUserLoggedInUsernameOneOf('jack, sam') %}
-    Private content here..
+{% if acl.isUserLoggedInEmailIn('jack@flextype.org, sam@flextype.org') %}
+    Public content for users is here...
+{% else %}
+    Public content for users is here...
 {% endif %}
 ```
 
-#### Show logged in username
+#### Show logged in email
 
 ```
-Hello {{ acl.getUserLoggedInUsername() }}
+Hello {{ acl.getUserLoggedInEmail() }}
 ```
 
 #### Show logged in uuid
 
 ```
-Hello {{ acl.getUserLoggedInUsername() }},
+Hello {{ acl.getUserLoggedInEmail() }},
 your uuid: {{ acl.getUserLoggedInUuid() }}
 ```
 
 #### Show logged in roles
 
 ```
-Hello {{ acl.getUserLoggedInUsername() }},
+Hello {{ acl.getUserLoggedInEmail() }},
 your uuid: {{ acl.getUserLoggedInUuid() }}
 and your roles: {{ acl.getUserLoggedInRoles() }}
 ```
@@ -326,7 +521,7 @@ if ($flextype->acl->isUserLoggedIn()) {
 #### Run private content for users with roles: admin and student
 
 ```php
-if ($flextype->acl->isUserLoggedInRolesOneOf('admin, student')) {
+if ($flextype->acl->isUserLoggedInRolesIn('admin, student')) {
     // Private code here..
 }
 ```
@@ -334,36 +529,36 @@ if ($flextype->acl->isUserLoggedInRolesOneOf('admin, student')) {
 #### Run private code for users with uuids ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2 and d549af27-79a0-44f2-b9b1-e82b47bf87e2
 
 ```php
-if ($flextype->acl->isUserLoggedInUuidOneOf('ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2, d549af27-79a0-44f2-b9b1-e82b47bf87e2') {
+if ($flextype->acl->isUserLoggedInUuidIn('ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2, d549af27-79a0-44f2-b9b1-e82b47bf87e2') {
     // Private content here..
 }
 ```
 
-#### Run private code for users with usernames jack, sam
+#### Run private code for users with emails jack@flextype.org, sam@flextype.org
 
 ```php
-if ($flextype->acl->isUserLoggedInUsernameOneOf('jack, sam')) {
+if ($flextype->acl->isUserLoggedInEmailIn('jack@flextype.org, sam@flextype.org')) {
     // Private content here..
 }
 ```
 
-#### Show logged in username
+#### Show logged in email
 
 ```php
-echo 'Hello ' . $flextype->acl->getUserLoggedInUsername();
+echo 'Hello ' . $flextype->acl->getUserLoggedInEmail();
 ```
 
 #### Show logged in uuid
 
 ```php
-echo 'Hello ' . $flextype->acl->getUserLoggedInUsername();
+echo 'Hello ' . $flextype->acl->getUserLoggedInEmail();
 echo 'your uuid: ' . $flextype->acl->getUserLoggedInUuid();
 ```
 
 #### Show logged in roles
 
 ```php
-echo 'Hello ' . $flextype->acl->getUserLoggedInUsername();
+echo 'Hello ' . $flextype->acl->getUserLoggedInEmail();
 echo 'your uuid: ' . $flextype->acl->getUserLoggedInUuid();
 echo 'and your roles: ' . $flextype->acl->getUserLoggedInRoles();
 ```
