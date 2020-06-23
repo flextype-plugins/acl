@@ -72,9 +72,9 @@ class AclTwig
      *
      * @access public
      */
-    public function getUserLoggedInUsername() : string
+    public function getUserLoggedInEmail() : string
     {
-        return $this->flextype->acl->getUserLoggedInUsername();
+        return $this->flextype->acl->getUserLoggedInEmail();
     }
 
     /**
@@ -102,7 +102,7 @@ class AclTwig
     }
 
     /**
-     * Check is user logged in roles one of
+     * Check is user logged in roles in
      *
      * @param string $roles Roles separated by comma.
      *
@@ -110,27 +110,27 @@ class AclTwig
      *
      * @access public
      */
-    public function isUserLoggedInRolesOneOf($roles) : bool
+    public function isUserLoggedInRolesIn($roles) : bool
     {
-        return $this->flextype->acl->isUserLoggedInRolesOneOf($roles);
+        return $this->flextype->acl->isUserLoggedInRolesIn($roles);
     }
 
     /**
-     * Check is user logged in usernames one of
+     * Check is user logged in emails in
      *
-     * @param string $usernames Usernames separated by comma.
+     * @param string $emails Emails separated by comma.
      *
      * @return bool true if equal or false if not
      *
      * @access public
      */
-    public function isUserLoggedInUsernameOneOf(string $usernames) : bool
+    public function isUserLoggedInEmailIn(string $emails) : bool
     {
-        return $this->flextype->acl->isUserLoggedInUsernameOneOf($usernames);
+        return $this->flextype->acl->isUserLoggedInEmailIn($emails);
     }
 
     /**
-     * Check is user logged in uuid one of
+     * Check is user logged in uuid in
      *
      * @param string $uuids Uuids separated by comma.
      *
@@ -138,8 +138,8 @@ class AclTwig
      *
      * @access public
      */
-    public function isUserLoggedInUuidOneOf(string $uuids) : bool
+    public function isUserLoggedInUuidIn(string $uuids) : bool
     {
-        return $this->flextype->acl->isUserLoggedInUuidOneOf($uuids);
+        return $this->flextype->acl->isUserLoggedInUuidIn($uuids);
     }
 }

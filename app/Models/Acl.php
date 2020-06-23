@@ -28,7 +28,7 @@ class Acl extends Container
      */
     public function isUserLoggedIn() : bool
     {
-        if (Session::exists('account_is_user_logged_in')) {
+        if (Session::exists('user_logged_in')) {
             return true;
         }
 
@@ -36,7 +36,7 @@ class Acl extends Container
     }
 
     /**
-     * Check is user logged in roles one of
+     * Check is user logged in roles in
      *
      * @param string $roles Roles separated by comma.
      *
@@ -44,7 +44,7 @@ class Acl extends Container
      *
      * @access public
      */
-    public function isUserLoggedInRolesOneOf(string $roles) : bool
+    public function isUserLoggedInRolesIn(string $roles) : bool
     {
         if (! empty(array_intersect(
             array_map('trim', explode(',', $roles)),
@@ -57,17 +57,17 @@ class Acl extends Container
     }
 
     /**
-     * Check is user logged in usernames one of
+     * Check is user logged in email in
      *
-     * @param string $usernames Usernames separated by comma.
+     * @param string $emails Email separated by comma.
      *
      * @return bool true if equal or false if not
      *
      * @access public
      */
-    public function isUserLoggedInUsernameOneOf(string $usernames) : bool
+    public function isUserLoggedInEmailIn(string $emails) : bool
     {
-        if (in_array($this->getUserLoggedInUsername(), array_map('trim', explode(',', $usernames)))) {
+        if (in_array($this->isUserLoggedInEmail(), array_map('trim', explode(',', $emails)))) {
             return true;
         }
 
@@ -75,7 +75,7 @@ class Acl extends Container
     }
 
     /**
-     * Check is user logged in uuid one of
+     * Check is user logged in uuid in
      *
      * @param string $uuids Uuids separated by comma.
      *
@@ -83,7 +83,7 @@ class Acl extends Container
      *
      * @access public
      */
-    public function isUserLoggedInUuidOneOf(string $uuids) : bool
+    public function isUserLoggedInUuidIn(string $uuids) : bool
     {
         if (in_array($this->getUserLoggedInUuid(), array_map('trim', explode(',', $uuids)))) {
             return true;
@@ -99,9 +99,9 @@ class Acl extends Container
      *
      * @access public
      */
-    public function getUserLoggedInUsername() : string
+    public function getUserLoggedInEmail() : string
     {
-        return Session::exists('account_username') ? Session::get('account_username') : '';
+        return Session::exists('user_email') ? Session::get('user_email') : '';
     }
 
     /**
@@ -113,7 +113,7 @@ class Acl extends Container
      */
     public function getUserLoggedInRoles() : string
     {
-        return Session::exists('account_roles') ? Session::get('account_roles') : '';
+        return Session::exists('user_roles') ? Session::get('user_roles') : '';
     }
 
     /**
@@ -125,6 +125,54 @@ class Acl extends Container
      */
     public function getUserLoggedInUuid() : string
     {
-        return Session::exists('account_uuid') ? Session::get('account_uuid') : '';
+        return Session::exists('user_uuid') ? Session::get('user_uuid') : '';
+    }
+
+    /**
+     * Set user logged in state
+     *
+     * @param bool $logged_in Logged in state for logged in user.
+     *
+     * @access public
+     */
+    public function setUserLoggedIn(bool $logged_in)
+    {
+        Session::set('user_logged_in', $logged_in);
+    }
+
+    /**
+     * Set user logged in uuid
+     *
+     * @param string $uuid Uuid for logged in user.
+     *
+     * @access public
+     */
+    public function setUserLoggedInUuid(string $uuid)
+    {
+        Session::set('user_uuid', $uuid);
+    }
+
+    /**
+     * Set user logged in email
+     *
+     * @param string $email Email for logged in user.
+     *
+     * @access public
+     */
+    public function setUserLoggedInEmail(string $email)
+    {
+        Session::set('user_email', $email);
+    }
+
+    /**
+     * Set user logged in roles
+     *
+     * @param string $roles Roles for logged in user.
+     *
+     * @access public
+     */
+    public function setUserLoggedInRoles(string $roles)
+    {
+        Session::set('user_roles', $roles);
     }
 }
