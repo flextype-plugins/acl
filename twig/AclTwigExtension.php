@@ -102,7 +102,7 @@ class AclTwig
     }
 
     /**
-     * Check is user logged in roles one of
+     * Check is user logged in roles in
      *
      * @param string $roles Roles separated by comma.
      *
@@ -116,7 +116,7 @@ class AclTwig
     }
 
     /**
-     * Check is user logged in emails one of
+     * Check is user logged in emails in
      *
      * @param string $emails Emails separated by comma.
      *
@@ -130,7 +130,7 @@ class AclTwig
     }
 
     /**
-     * Check is user logged in uuid one of
+     * Check is user logged in uuid in
      *
      * @param string $uuids Uuids separated by comma.
      *

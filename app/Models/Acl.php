@@ -36,7 +36,7 @@ class Acl extends Container
     }
 
     /**
-     * Check is user logged in roles one of
+     * Check is user logged in roles in
      *
      * @param string $roles Roles separated by comma.
      *
@@ -57,7 +57,7 @@ class Acl extends Container
     }
 
     /**
-     * Check is user logged in email one of
+     * Check is user logged in email in
      *
      * @param string $emails Email separated by comma.
      *
@@ -75,7 +75,7 @@ class Acl extends Container
     }
 
     /**
-     * Check is user logged in uuid one of
+     * Check is user logged in uuid in
      *
      * @param string $uuids Uuids separated by comma.
      *

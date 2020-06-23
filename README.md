@@ -342,7 +342,7 @@ Public text here...
 [/userNotLoggedIn]
 ```
 
-#### Show private content for users with roles: admin and student
+#### Show public content for users with roles: admin and student
 
 `/project/entries/lessons/lesson-42.md`
 
@@ -357,7 +357,7 @@ Public text here...
 [/userLoggedInRolesNotIn]
 ```
 
-#### Show private content for users with uuids ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2 and d549af27-79a0-44f2-b9b1-e82b47bf87e2
+#### Show public content for users with uuids ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2 and d549af27-79a0-44f2-b9b1-e82b47bf87e2
 
 `/project/entries/lessons/lesson-42.md`
 
@@ -372,7 +372,7 @@ Public text here...
 [/userLoggedInUuidNotIn]
 ```
 
-#### Show private content for users with emails jack@flextype.org, sam@flextype.org
+#### Show public content for users with emails jack@flextype.org, sam@flextype.org
 
 `/project/entries/lessons/lesson-42.md`
 

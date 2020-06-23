@@ -25,7 +25,7 @@ General code update and refactoring with a breaking changes
 * **acl**: add new method setUserLoggedInEmail(string $email)
 * **acl**: add new method setUserLoggedInRoles(string $roles)
 
-and a lot of more, read README.MD
+and a lot of more, read README.MD with a new doc
 
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/flextype-plugins/acl) (2020-06-21)
