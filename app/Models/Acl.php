@@ -9,13 +9,15 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Flextype;
+namespace Flextype\Plugin\Acl\Models;
 
 use Flextype\Component\Session\Session;
+use Flextype\App\Foundation\Container;
 use function array_intersect;
 use function array_map;
 use function explode;
 use function in_array;
+
 
 class Acl extends Container
 {
