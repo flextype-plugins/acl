@@ -12,35 +12,35 @@ namespace Flextype\Plugin\Acl\Shortcodes;
 use Thunder\Shortcode\Shortcode\ShortcodeInterface;
 
 // Shortcode: [userLoggedInEmail]
-$flextype['shortcode']->add('userLoggedInEmail', static function (ShortcodeInterface $s) use ($flextype) {
-    if ($flextype->acl->getUserLoggedInEmail()) {
-        return $flextype->acl->getUserLoggedInEmail();
+$flextype->container('shortcode')->addHandler('userLoggedInEmail', static function (ShortcodeInterface $s) use ($flextype) {
+    if ($flextype->container('acl')->getUserLoggedInEmail()) {
+        return $flextype->container('acl')->getUserLoggedInEmail();
     }
 
     return '';
 });
 
 // Shortcode: [userLoggedInUuid]
-$flextype['shortcode']->add('userLoggedInUuid', static function (ShortcodeInterface $s) use ($flextype) {
-    if ($flextype->acl->getUserLoggedInUuid()) {
-        return $flextype->acl->getUserLoggedInUuid();
+$flextype->container('shortcode')->addHandler('userLoggedInUuid', static function (ShortcodeInterface $s) use ($flextype) {
+    if ($flextype->container('acl')->getUserLoggedInUuid()) {
+        return $flextype->container('acl')->getUserLoggedInUuid();
     }
 
     return '';
 });
 
 // Shortcode: [userLoggedInRoles]
-$flextype['shortcode']->add('userLoggedInRoles', static function (ShortcodeInterface $s) use ($flextype) {
-    if ($flextype->acl->getUserLoggedInRoles()) {
-        return $flextype->acl->getUserLoggedInRoles();
+$flextype->container('shortcode')->addHandler('userLoggedInRoles', static function (ShortcodeInterface $s) use ($flextype) {
+    if ($flextype->container('acl')->getUserLoggedInRoles()) {
+        return $flextype->container('acl')->getUserLoggedInRoles();
     }
 
     return '';
 });
 
 // Shortcode: [userLoggedIn]Private content here..[/userLoggedIn]
-$flextype['shortcode']->add('userLoggedIn', static function (ShortcodeInterface $s) use ($flextype) {
-    if ($flextype->acl->isUserLoggedIn()) {
+$flextype->container('shortcode')->addHandler('userLoggedIn', static function (ShortcodeInterface $s) use ($flextype) {
+    if ($flextype->container('acl')->isUserLoggedIn()) {
         return $s->getContent();
     }
 
@@ -48,8 +48,8 @@ $flextype['shortcode']->add('userLoggedIn', static function (ShortcodeInterface 
 });
 
 // Shortcode: [userLoggedInRolesIn roles="admin, student"]Private content here..[/userLoggedInRolesIn]
-$flextype['shortcode']->add('userLoggedInRolesIn', static function (ShortcodeInterface $s) use ($flextype) {
-    if ($flextype->acl->isUserLoggedInRolesIn($s->getParameter('roles'))) {
+$flextype->container('shortcode')->addHandler('userLoggedInRolesIn', static function (ShortcodeInterface $s) use ($flextype) {
+    if ($flextype->container('acl')->isUserLoggedInRolesIn($s->getParameter('roles'))) {
         return $s->getContent();
     }
 
@@ -57,8 +57,8 @@ $flextype['shortcode']->add('userLoggedInRolesIn', static function (ShortcodeInt
 });
 
 // Shortcode: [userLoggedInUuidIn uuids="ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2, d549af27-79a0-44f2-b9b1-e82b47bf87e2"]Private content here..[/userLoggedInUuidOneOf]
-$flextype['shortcode']->add('userLoggedInUuidIn', static function (ShortcodeInterface $s) use ($flextype) {
-    if ($flextype->acl->isUserLoggedInUuidIn($s->getParameter('uuids'))) {
+$flextype->container('shortcode')->addHandler('userLoggedInUuidIn', static function (ShortcodeInterface $s) use ($flextype) {
+    if ($flextype->container('acl')->isUserLoggedInUuidIn($s->getParameter('uuids'))) {
         return $s->getContent();
     }
 
@@ -66,8 +66,8 @@ $flextype['shortcode']->add('userLoggedInUuidIn', static function (ShortcodeInte
 });
 
 // Shortcode: [userLoggedInEmailIn emails="jack@flexype.org, sam@flextype.org"]Private content here..[/userLoggedInUsernameOneOf]
-$flextype['shortcode']->add('userLoggedInEmailIn', static function (ShortcodeInterface $s) use ($flextype) {
-    if ($flextype->acl->isUserLoggedInEmailIn($s->getParameter('emails'))) {
+$flextype->container('shortcode')->addHandler('userLoggedInEmailIn', static function (ShortcodeInterface $s) use ($flextype) {
+    if ($flextype->container('acl')->isUserLoggedInEmailIn($s->getParameter('emails'))) {
         return $s->getContent();
     }
 
@@ -75,8 +75,8 @@ $flextype['shortcode']->add('userLoggedInEmailIn', static function (ShortcodeInt
 });
 
 // Shortcode: [userNotLoggedIn]Content for not logged in user here..[/userNotLoggedIn]
-$flextype['shortcode']->add('userNotLoggedIn', static function (ShortcodeInterface $s) use ($flextype) {
-    if (! $flextype->acl->isUserLoggedIn()) {
+$flextype->container('shortcode')->addHandler('userNotLoggedIn', static function (ShortcodeInterface $s) use ($flextype) {
+    if (! $flextype->container('acl')->isUserLoggedIn()) {
         return $s->getContent();
     }
 
@@ -84,8 +84,8 @@ $flextype['shortcode']->add('userNotLoggedIn', static function (ShortcodeInterfa
 });
 
 // Shortcode: [userLoggedInRolesNotIn roles="admin, student"]Private content here..[/userLoggedInRolesNotIn]
-$flextype['shortcode']->add('userLoggedInRolesNotIn', static function (ShortcodeInterface $s) use ($flextype) {
-    if (! $flextype->acl->isUserLoggedInRolesNotIn($s->getParameter('roles'))) {
+$flextype->container('shortcode')->addHandler('userLoggedInRolesNotIn', static function (ShortcodeInterface $s) use ($flextype) {
+    if (! $flextype->container('acl')->isUserLoggedInRolesNotIn($s->getParameter('roles'))) {
         return $s->getContent();
     }
 
@@ -93,8 +93,8 @@ $flextype['shortcode']->add('userLoggedInRolesNotIn', static function (Shortcode
 });
 
 // Shortcode: [userLoggedInUuidNotIn uuids="ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2, d549af27-79a0-44f2-b9b1-e82b47bf87e2"]Private content here..[/userLoggedInUuidNotIn]
-$flextype['shortcode']->add('userLoggedInUuidNotIn', static function (ShortcodeInterface $s) use ($flextype) {
-    if (! $flextype->acl->isUserLoggedInUuidNotIn($s->getParameter('uuids'))) {
+$flextype->container('shortcode')->addHandler('userLoggedInUuidNotIn', static function (ShortcodeInterface $s) use ($flextype) {
+    if (! $flextype->container('acl')->isUserLoggedInUuidNotIn($s->getParameter('uuids'))) {
         return $s->getContent();
     }
 
@@ -102,8 +102,8 @@ $flextype['shortcode']->add('userLoggedInUuidNotIn', static function (ShortcodeI
 });
 
 // Shortcode: [userLoggedInEmailNotIn emails="jack@flexype.org, sam@flextype.org"]Private content here..[/userLoggedInEmailNotIn]
-$flextype['shortcode']->add('userLoggedInEmailNotIn', static function (ShortcodeInterface $s) use ($flextype) {
-    if (! $flextype->acl->isUserLoggedInEmailsNotIn($s->getParameter('emails'))) {
+$flextype->container('shortcode')->addHandler('userLoggedInEmailNotIn', static function (ShortcodeInterface $s) use ($flextype) {
+    if (! $flextype->container('acl')->isUserLoggedInEmailsNotIn($s->getParameter('emails'))) {
         return $s->getContent();
     }
 

@@ -17,11 +17,11 @@ use Flextype\Plugin\Acl\Twig\AclTwigExtension;
 /**
  * Add ACL Model to Flextype container
  */
-$flextype['acl'] = static function ($container) {
-    return new Acl($container);
+$flextype->container()['acl'] = static function () use ($flextype) {
+    return new Acl($flextype);
 };
 
 /**
  * Add ACL Twig Extension to Flextype container
  */
-$flextype->twig->addExtension(new AclTwigExtension($flextype));
+$flextype->container('twig')->addExtension(new AclTwigExtension($flextype));
