@@ -9,12 +9,16 @@ declare(strict_types=1);
 
 namespace Flextype\Plugin\Acl\Middlewares;
 
-use Flextype\App\Foundation\Container;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class AclIsUserNotLoggedInMiddleware extends Container
+class AclIsUserNotLoggedInMiddleware
 {
+    /**
+     * Flextype Application
+     */
+    protected $flextype;
+
     /**
      * Middleware Settings
      */
@@ -23,11 +27,10 @@ class AclIsUserNotLoggedInMiddleware extends Container
     /**
      * __construct
      */
-    public function __construct($settings)
+    public function __construct($flextype, $settings)
     {
-        parent::__construct($settings['container']);
-
-        $this->settings = $settings;
+        $this->flextype  = $flextype;
+        $this->settings  = $settings;
     }
 
     /**
@@ -39,10 +42,10 @@ class AclIsUserNotLoggedInMiddleware extends Container
      */
     public function __invoke(Request $request, Response $response, callable $next) : Response
     {
-        if (!$this->acl->isUserLoggedIn()) {
+        if (!$this->flextype->container('acl')->isUserLoggedIn()) {
             $response = $next($request, $response);
         } else {
-            $response = $response->withRedirect($this->router->pathFor($this->settings['redirect']));
+            $response = $response->withRedirect($this->flextype->container('router')->pathFor($this->settings['redirect']));
         }
 
         return $response;

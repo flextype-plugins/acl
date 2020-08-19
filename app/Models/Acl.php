@@ -12,15 +12,26 @@ declare(strict_types=1);
 namespace Flextype\Plugin\Acl\Models;
 
 use Flextype\Component\Session\Session;
-use Flextype\App\Foundation\Container;
 use function array_intersect;
 use function array_map;
 use function explode;
 use function in_array;
 
-
-class Acl extends Container
+class Acl
 {
+    /**
+     * Flextype Application
+     */
+     protected $flextype;
+
+    /**
+     * __construct
+     */
+     public function __construct($flextype)
+     {
+         $this->flextype = $flextype;
+     }
+
     /**
      * Check is user logged in
      *

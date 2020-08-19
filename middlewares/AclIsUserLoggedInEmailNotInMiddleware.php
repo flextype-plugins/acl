@@ -9,26 +9,29 @@ declare(strict_types=1);
 
 namespace Flextype\Plugin\Acl\Middlewares;
 
-use Flextype\App\Foundation\Container;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class AclIsUserLoggedInEmailNotInMiddleware extends Container
+class AclIsUserLoggedInEmailNotInMiddleware
 {
+    /**
+     * Flextype Application
+     */
+    protected $flextype;
+
     /**
      * Middleware Settings
      */
     protected $settings;
 
-    /**
-     * __construct
-     */
-    public function __construct($settings)
-    {
-        parent::__construct($settings['container']);
-
-        $this->settings = $settings;
-    }
+     /**
+      * __construct
+      */
+     public function __construct($flextype, $settings)
+     {
+         $this->flextype  = $flextype;
+         $this->settings  = $settings;
+     }
 
     /**
      * __invoke
@@ -39,10 +42,10 @@ class AclIsUserLoggedInEmailNotInMiddleware extends Container
      */
     public function __invoke(Request $request, Response $response, callable $next) : Response
     {
-        if (!$this->acl->isUserLoggedInEmailIn($this->settings['emails'])) {
+        if (!$this->flextype->container('acl')->isUserLoggedInEmailIn($this->settings['emails'])) {
             $response = $next($request, $response);
         } else {
-            $response = $response->withRedirect($this->router->pathFor($this->settings['redirect']));
+            $response = $response->withRedirect($this->flextype->container('router')->pathFor($this->settings['redirect']));
         }
 
         return $response;
