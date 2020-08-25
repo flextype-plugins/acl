@@ -15,16 +15,11 @@ use Twig\Extension\GlobalsInterface;
 class AclTwigExtension extends AbstractExtension implements GlobalsInterface
 {
     /**
-     * Flextype Application
-     */
-    protected $flextype;
-
-    /**
      * Constructor
      */
-    public function __construct($flextype)
+    public function __construct()
     {
-        $this->flextype = $flextype;
+
     }
 
     /**
@@ -33,7 +28,7 @@ class AclTwigExtension extends AbstractExtension implements GlobalsInterface
     public function getGlobals() : array
     {
         return [
-            'acl' => new AclTwig($this->flextype),
+            'acl' => new AclTwig(),
         ];
     }
 }
@@ -43,14 +38,14 @@ class AclTwig
     /**
      * Flextype Application
      */
-    protected $flextype;
+
 
     /**
      * Constructor
      */
-    public function __construct($flextype)
+    public function __construct()
     {
-        $this->flextype = $flextype;
+
     }
 
     /**
@@ -62,7 +57,7 @@ class AclTwig
      */
     public function isUserLoggedIn() : bool
     {
-        return $this->flextype->container('acl')->isUserLoggedIn();
+        return flextype('acl')->isUserLoggedIn();
     }
 
     /**
@@ -74,7 +69,7 @@ class AclTwig
      */
     public function getUserLoggedInEmail() : string
     {
-        return $this->flextype->container('acl')->getUserLoggedInEmail();
+        return flextype('acl')->getUserLoggedInEmail();
     }
 
     /**
@@ -86,7 +81,7 @@ class AclTwig
      */
     public function getUserLoggedInRoles() : string
     {
-        return $this->flextype->container('acl')->getUserLoggedInRoles();
+        return flextype('acl')->getUserLoggedInRoles();
     }
 
     /**
@@ -98,7 +93,7 @@ class AclTwig
      */
     public function getUserLoggedInUuid() : string
     {
-        return $this->flextype->container('acl')->getUserLoggedInUuid();
+        return flextype('acl')->getUserLoggedInUuid();
     }
 
     /**
@@ -112,7 +107,7 @@ class AclTwig
      */
     public function isUserLoggedInRolesIn($roles) : bool
     {
-        return $this->flextype->container('acl')->isUserLoggedInRolesIn($roles);
+        return flextype('acl')->isUserLoggedInRolesIn($roles);
     }
 
     /**
@@ -126,7 +121,7 @@ class AclTwig
      */
     public function isUserLoggedInEmailIn(string $emails) : bool
     {
-        return $this->flextype->container('acl')->isUserLoggedInEmailIn($emails);
+        return flextype('acl')->isUserLoggedInEmailIn($emails);
     }
 
     /**
@@ -140,6 +135,6 @@ class AclTwig
      */
     public function isUserLoggedInUuidIn(string $uuids) : bool
     {
-        return $this->flextype->container('acl')->isUserLoggedInUuidIn($uuids);
+        return flextype('acl')->isUserLoggedInUuidIn($uuids);
     }
 }

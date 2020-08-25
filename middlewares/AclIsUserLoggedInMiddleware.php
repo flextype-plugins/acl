@@ -15,11 +15,6 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 class AclIsUserLoggedInMiddleware
 {
     /**
-     * Flextype Application
-     */
-    protected $flextype;
-
-    /**
      * Middleware Settings
      */
     protected $settings;
@@ -27,9 +22,9 @@ class AclIsUserLoggedInMiddleware
     /**
      * __construct
      */
-    public function __construct($flextype, $settings)
+    public function __construct($settings)
     {
-        $this->flextype  = $flextype;
+
         $this->settings  = $settings;
     }
 
@@ -42,10 +37,10 @@ class AclIsUserLoggedInMiddleware
      */
     public function __invoke(Request $request, Response $response, callable $next) : Response
     {
-        if ($this->flextype->container('acl')->isUserLoggedIn()) {
+        if (flextype('acl')->isUserLoggedIn()) {
             $response = $next($request, $response);
         } else {
-            $response = $response->withRedirect($this->flextype->container('router')->pathFor($this->settings['redirect']));
+            $response = $response->withRedirect(flextype('router')->pathFor($this->settings['redirect']));
         }
 
         return $response;

@@ -20,17 +20,12 @@ use function in_array;
 class Acl
 {
     /**
-     * Flextype Application
-     */
-     protected $flextype;
-
-    /**
      * __construct
      */
-     public function __construct($flextype)
-     {
-         $this->flextype = $flextype;
-     }
+    public function __construct()
+    {
+
+    }
 
     /**
      * Check is user logged in
