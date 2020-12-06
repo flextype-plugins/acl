@@ -1,3 +1,10 @@
+<a name="1.5.0"></a>
+# [1.5.0](https://github.com/flextype-plugins/acl) (2020-12-06)
+
+### Features
+
+* **core** update code base for new Flextype 0.9.12
+
 <a name="1.4.0"></a>
 # [1.4.0](https://github.com/flextype-plugins/acl) (2020-08-25)
 
