@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Flextype\Plugin\Acl\Models;
 
-use Flextype\Component\Session\Session;
+
 use function array_intersect;
 use function array_map;
 use function explode;
@@ -36,7 +36,7 @@ class Acl
      */
     public function isUserLoggedIn() : bool
     {
-        if (Session::exists('user_logged_in')) {
+        if (flextype('session')->has('user_logged_in')) {
             return true;
         }
 
@@ -109,7 +109,7 @@ class Acl
      */
     public function getUserLoggedInEmail() : string
     {
-        return Session::exists('user_email') ? Session::get('user_email') : '';
+        return flextype('session')->has('user_email') ? flextype('session')->get('user_email') : '';
     }
 
     /**
@@ -121,7 +121,7 @@ class Acl
      */
     public function getUserLoggedInRoles() : string
     {
-        return Session::exists('user_roles') ? Session::get('user_roles') : '';
+        return flextype('session')->has('user_roles') ? flextype('session')->get('user_roles') : '';
     }
 
     /**
@@ -133,7 +133,7 @@ class Acl
      */
     public function getUserLoggedInUuid() : string
     {
-        return Session::exists('user_uuid') ? Session::get('user_uuid') : '';
+        return flextype('session')->has('user_uuid') ? flextype('session')->get('user_uuid') : '';
     }
 
     /**
@@ -145,7 +145,7 @@ class Acl
      */
     public function setUserLoggedIn(bool $logged_in)
     {
-        Session::set('user_logged_in', $logged_in);
+        flextype('session')->set('user_logged_in', $logged_in);
     }
 
     /**
@@ -157,7 +157,7 @@ class Acl
      */
     public function setUserLoggedInUuid(string $uuid)
     {
-        Session::set('user_uuid', $uuid);
+        flextype('session')->set('user_uuid', $uuid);
     }
 
     /**
@@ -169,7 +169,7 @@ class Acl
      */
     public function setUserLoggedInEmail(string $email)
     {
-        Session::set('user_email', $email);
+        flextype('session')->set('user_email', $email);
     }
 
     /**
@@ -181,6 +181,6 @@ class Acl
      */
     public function setUserLoggedInRoles(string $roles)
     {
-        Session::set('user_roles', $roles);
+        flextype('session')->set('user_roles', $roles);
     }
 }
