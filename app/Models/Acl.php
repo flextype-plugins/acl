@@ -20,14 +20,6 @@ use function in_array;
 class Acl
 {
     /**
-     * __construct
-     */
-    public function __construct()
-    {
-
-    }
-
-    /**
      * Check is user logged in
      *
      * @return bool true if user is logged in or false if not
