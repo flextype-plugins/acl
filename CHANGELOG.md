@@ -1,3 +1,10 @@
+<a name="1.7.1"></a>
+# [1.7.1](https://github.com/flextype-plugins/acl) (2020-12-29)
+
+### Bug Fixes
+
+* **composer** fix dependencies
+
 <a name="1.7.0"></a>
 # [1.7.0](https://github.com/flextype-plugins/acl) (2020-12-29)
 
