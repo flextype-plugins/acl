@@ -4,7 +4,7 @@ namespace Flextype\Plugin\Acl;
 
 
 
-flextype('emitter')->addListener('onEntryAfterInitialized', function() {
+flextype('emitter')->addListener('onEntriesFetchSingleHasResult', function() {
 
     // Get current entry
     $entry = flextype('entries')->getStorage('fetch.data');

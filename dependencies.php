@@ -13,15 +13,18 @@ namespace Flextype\Plugin\Acl;
 
 use Flextype\Plugin\Acl\Models\Acl;
 use Flextype\Plugin\Acl\Twig\AclTwigExtension;
+use Flextype\Plugin\Twig\Twig\FlextypeTwig;
+use Flextype\Foundation\Entries\Entries;
+use Flextype\Plugin\Twig\Twig\FlextypeEntriesTwig;
+
 
 /**
  * Add ACL Model to Flextype container
  */
-flextype()->container()['acl'] = static function () {
-    return new Acl();
-};
+flextype()->container()['acl'] = fn() => new Acl();
+
 
 /**
- * Add ACL Twig Extension to Flextype container
+ * Add ACL Model to Flextype Twig
  */
-flextype('twig')->addExtension(new AclTwigExtension());
+FlextypeTwig::macro('acl', fn() => flextype('acl'));
