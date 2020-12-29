@@ -1,7 +1,7 @@
-<h1 align="center">ACL Plugin for <a href="http://flextype.org/">Flextype</a></h1>
+<h1 align="center">ACL Plugin for <a href="https://flextype.org/">Flextype</a></h1>
 
 <p align="center">
-<a href="https://github.com/flextype-plugins/acl/releases"><img alt="Version" src="https://img.shields.io/github/release/flextype-plugins/acl.svg?label=version&color=black"></a> <a href="https://github.com/flextype-plugins/acl"><img src="https://img.shields.io/badge/license-MIT-blue.svg?color=black" alt="License"></a> <a href="https://github.com/flextype-plugins/acl"><img src="https://img.shields.io/github/downloads/flextype-plugins/acl/total.svg?color=black" alt="Total downloads"></a> <a href="https://github.com/flextype/flextype"><img src="https://img.shields.io/badge/Flextype-0.9.13-green.svg" alt="Flextype"></a> <a href=""><img src="https://img.shields.io/discord/423097982498635778.svg?logo=discord&color=black&label=Discord%20Chat" alt="Discord"></a>
+<a href="https://github.com/flextype-plugins/acl/releases"><img alt="Version" src="https://img.shields.io/github/release/flextype-plugins/flextype.acl.svg?label=version&color=black"></a> <a href="https://github.com/flextype-plugins/acl"><img src="https://img.shields.io/badge/license-MIT-blue.svg?color=black" alt="License"></a> <a href="https://github.com/flextype-plugins/acl"><img src="https://img.shields.io/github/downloads/flextype-plugins/acl/total.svg?color=black" alt="Total downloads"></a> <a href="https://github.com/flextype/flextype"><img src="https://img.shields.io/badge/Flextype-0.9.14-green.svg" alt="Flextype"></a> <a href=""><img src="https://img.shields.io/discord/423097982498635778.svg?logo=discord&color=black&label=Discord%20Chat" alt="Discord"></a>
 </p>
 
 ## Features
@@ -15,7 +15,7 @@ The following dependencies need to be downloaded and installed for ACL Plugin.
 
 | Item | Version | Download |
 |---|---|---|
-| [flextype](https://github.com/flextype/flextype) | 0.9.13 | [download](https://github.com/flextype/flextype/releases) |
+| [flextype](https://github.com/flextype/flextype) | 0.9.14 | [download](https://github.com/flextype/flextype/releases) |
 | [twig](https://github.com/flextype-plugins/twig) | >=1.0.0 | [download](https://github.com/flextype-plugins/twig/releases) |
 
 ## Installation
@@ -447,7 +447,7 @@ You may restrict access for specific users to your specific content inside the T
 #### Show private content for logged in users
 
 ```
-{% if acl.isUserLoggedIn() %}
+{% if flextype.acl.isUserLoggedIn() %}
     Private content here..
 {% else %}
     Public content for users is here...
@@ -457,7 +457,7 @@ You may restrict access for specific users to your specific content inside the T
 #### Show private content for users with roles: admin and student
 
 ```
-{% if acl.isUserLoggedInRolesIn('admin, student') %}
+{% if flextype.acl.isUserLoggedInRolesIn('admin, student') %}
     Private content here..
 {% else %}
     Public content for users is here...
@@ -467,7 +467,7 @@ You may restrict access for specific users to your specific content inside the T
 #### Show private content for users with uuids ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2 and d549af27-79a0-44f2-b9b1-e82b47bf87e2
 
 ```
-{% if acl.isUserLoggedInUuidIn('ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2, d549af27-79a0-44f2-b9b1-e82b47bf87e2') %}
+{% if flextype.acl.isUserLoggedInUuidIn('ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2, d549af27-79a0-44f2-b9b1-e82b47bf87e2') %}
     Private content here..
 {% else %}
     Public content for users is here...
@@ -477,7 +477,7 @@ You may restrict access for specific users to your specific content inside the T
 #### Show private content for users with emails jack@flextype.org, sam@flextype.org
 
 ```
-{% if acl.isUserLoggedInEmailIn('jack@flextype.org, sam@flextype.org') %}
+{% if flextype.acl.isUserLoggedInEmailIn('jack@flextype.org, sam@flextype.org') %}
     Public content for users is here...
 {% else %}
     Public content for users is here...
@@ -487,22 +487,22 @@ You may restrict access for specific users to your specific content inside the T
 #### Show logged in email
 
 ```
-Hello {{ acl.getUserLoggedInEmail() }}
+Hello {{ flextype.acl.getUserLoggedInEmail() }}
 ```
 
 #### Show logged in uuid
 
 ```
-Hello {{ acl.getUserLoggedInEmail() }},
-your uuid: {{ acl.getUserLoggedInUuid() }}
+Hello {{ flextype.acl.getUserLoggedInEmail() }},
+your uuid: {{ flextype.acl.getUserLoggedInUuid() }}
 ```
 
 #### Show logged in roles
 
 ```
-Hello {{ acl.getUserLoggedInEmail() }},
-your uuid: {{ acl.getUserLoggedInUuid() }}
-and your roles: {{ acl.getUserLoggedInRoles() }}
+Hello {{ flextype.acl.getUserLoggedInEmail() }},
+your uuid: {{ flextype.acl.getUserLoggedInUuid() }}
+and your roles: {{ flextype.acl.getUserLoggedInRoles() }}
 ```
 
 ### Restrict access in the PHP
