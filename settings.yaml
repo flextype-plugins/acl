@@ -2,4 +2,4 @@
 enabled: true
 
 # ACL plugin priority
-priority: 95
+priority: 40
