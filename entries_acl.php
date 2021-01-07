@@ -2,8 +2,6 @@
 
 namespace Flextype\Plugin\Acl;
 
-
-
 flextype('emitter')->addListener('onEntriesFetchSingleHasResult', function() {
 
     // Get current entry
