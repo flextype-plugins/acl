@@ -31,7 +31,7 @@ The following dependencies need to be downloaded and installed for ACL Plugin.
 | Key | Value | Description |
 |---|---|---|
 | enabled | true | true or false to disable the plugin |
-| priority | 95 | accounts plugin priority |
+| priority | 40 | accounts plugin priority |
 
 ### Session Variables
 
