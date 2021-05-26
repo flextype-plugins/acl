@@ -2,8 +2,8 @@ name: ACL
 version: 1.9.0
 description: ACL plugin for Flextype.
 icon:
-  name: users-cog
-  set: "fontawesome|solid"
+  name: people
+  set: bootstrap
 author:
   name: Sergey Romanenko
   email: sergey.romanenko@flextype.org
