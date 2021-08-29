@@ -9,13 +9,13 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Flextype\Plugin\Acl\Models;
-
+namespace Flextype\Plugin\Acl;
 
 use function array_intersect;
 use function array_map;
 use function explode;
 use function in_array;
+use function session;
 
 class Acl
 {
@@ -26,9 +26,9 @@ class Acl
      *
      * @access public
      */
-    public function isUserLoggedIn() : bool
+    public function isUserLoggedIn(): bool
     {
-        if (flextype('session')->has('user_logged_in')) {
+        if (session()->has('user_logged_in')) {
             return true;
         }
 
@@ -44,12 +44,14 @@ class Acl
      *
      * @access public
      */
-    public function isUserLoggedInRolesIn(string $roles) : bool
+    public function isUserLoggedInRolesIn(string $roles): bool
     {
-        if (! empty(array_intersect(
-            array_map('trim', explode(',', $roles)),
-            array_map('trim', explode(',', $this->getUserLoggedInRoles()))
-        ))) {
+        if (
+            ! empty(array_intersect(
+                array_map('trim', explode(',', $roles)),
+                array_map('trim', explode(',', $this->getUserLoggedInRoles()))
+            ))
+        ) {
             return true;
         }
 
@@ -65,7 +67,7 @@ class Acl
      *
      * @access public
      */
-    public function isUserLoggedInEmailIn(string $emails) : bool
+    public function isUserLoggedInEmailIn(string $emails): bool
     {
         if (in_array($this->isUserLoggedInEmail(), array_map('trim', explode(',', $emails)))) {
             return true;
@@ -83,7 +85,7 @@ class Acl
      *
      * @access public
      */
-    public function isUserLoggedInUuidIn(string $uuids) : bool
+    public function isUserLoggedInUuidIn(string $uuids): bool
     {
         if (in_array($this->getUserLoggedInUuid(), array_map('trim', explode(',', $uuids)))) {
             return true;
@@ -99,9 +101,9 @@ class Acl
      *
      * @access public
      */
-    public function getUserLoggedInEmail() : string
+    public function getUserLoggedInEmail(): string
     {
-        return flextype('session')->has('user_email') ? flextype('session')->get('user_email') : '';
+        return session()->has('user_email') ? session()->get('user_email') : '';
     }
 
     /**
@@ -111,9 +113,9 @@ class Acl
      *
      * @access public
      */
-    public function getUserLoggedInRoles() : string
+    public function getUserLoggedInRoles(): string
     {
-        return flextype('session')->has('user_roles') ? flextype('session')->get('user_roles') : '';
+        return session()->has('user_roles') ? session()->get('user_roles') : '';
     }
 
     /**
@@ -123,9 +125,9 @@ class Acl
      *
      * @access public
      */
-    public function getUserLoggedInUuid() : string
+    public function getUserLoggedInUuid(): string
     {
-        return flextype('session')->has('user_uuid') ? flextype('session')->get('user_uuid') : '';
+        return session()->has('user_uuid') ? session()->get('user_uuid') : '';
     }
 
     /**
@@ -135,9 +137,9 @@ class Acl
      *
      * @access public
      */
-    public function setUserLoggedIn(bool $logged_in)
+    public function setUserLoggedIn(bool $logged_in): void
     {
-        flextype('session')->set('user_logged_in', $logged_in);
+        session()->set('user_logged_in', $logged_in);
     }
 
     /**
@@ -147,9 +149,9 @@ class Acl
      *
      * @access public
      */
-    public function setUserLoggedInUuid(string $uuid)
+    public function setUserLoggedInUuid(string $uuid): void
     {
-        flextype('session')->set('user_uuid', $uuid);
+        session()->set('user_uuid', $uuid);
     }
 
     /**
@@ -159,9 +161,9 @@ class Acl
      *
      * @access public
      */
-    public function setUserLoggedInEmail(string $email)
+    public function setUserLoggedInEmail(string $email): void
     {
-        flextype('session')->set('user_email', $email);
+        session()->set('user_email', $email);
     }
 
     /**
@@ -171,8 +173,8 @@ class Acl
      *
      * @access public
      */
-    public function setUserLoggedInRoles(string $roles)
+    public function setUserLoggedInRoles(string $roles): void
     {
-        flextype('session')->set('user_roles', $roles);
+        session()->set('user_roles', $roles);
     }
 }

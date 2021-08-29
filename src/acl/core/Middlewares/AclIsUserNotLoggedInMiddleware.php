@@ -12,7 +12,9 @@ namespace Flextype\Plugin\Acl\Middlewares;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class AclIsUserLoggedInUuidInMiddleware
+use function acl;
+
+class AclIsUserNotLoggedInMiddleware
 {
     /**
      * Middleware Settings
@@ -24,8 +26,7 @@ class AclIsUserLoggedInUuidInMiddleware
      */
     public function __construct($settings)
     {
-
-        $this->settings  = $settings;
+        $this->settings = $settings;
     }
 
     /**
@@ -35,9 +36,9 @@ class AclIsUserLoggedInUuidInMiddleware
      * @param Response $response PSR7 response
      * @param callable $next     Next middleware
      */
-    public function __invoke(Request $request, Response $response, callable $next) : Response
+    public function __invoke(Request $request, Response $response, callable $next): Response
     {
-        if (flextype('acl')->isUserLoggedInUuidIn($this->settings['uuids'])) {
+        if (! acl()->isUserLoggedIn()) {
             $response = $next($request, $response);
         } else {
             $response = $response->withRedirect(flextype('router')->pathFor($this->settings['redirect']));

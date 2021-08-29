@@ -12,21 +12,22 @@ namespace Flextype\Plugin\Acl\Middlewares;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class AclIsUserLoggedInEmailNotInMiddleware
+use function acl;
+
+class AclIsUserLoggedInRolesNotInfMiddleware
 {
     /**
      * Middleware Settings
      */
     protected $settings;
 
-     /**
-      * __construct
-      */
-     public function __construct($settings)
-     {
-
-         $this->settings  = $settings;
-     }
+    /**
+     * __construct
+     */
+    public function __construct($settings)
+    {
+        $this->settings = $settings;
+    }
 
     /**
      * __invoke
@@ -35,9 +36,9 @@ class AclIsUserLoggedInEmailNotInMiddleware
      * @param Response $response PSR7 response
      * @param callable $next     Next middleware
      */
-    public function __invoke(Request $request, Response $response, callable $next) : Response
+    public function __invoke(Request $request, Response $response, callable $next): Response
     {
-        if (!flextype('acl')->isUserLoggedInEmailIn($this->settings['emails'])) {
+        if (! acl()->isUserLoggedInRolesIn($this->settings['roles'])) {
             $response = $next($request, $response);
         } else {
             $response = $response->withRedirect(flextype('router')->pathFor($this->settings['redirect']));

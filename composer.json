@@ -17,9 +17,7 @@
     },
     "require": {
         "php": ">=7.4.0",
-        "ext-json": "*",
-        "flextype-components/arrays" : "3.0.1",
-        "flextype-components/filesystem": "2.0.8"
+        "ext-json": "*"
     },
     "config": {
         "apcu-autoloader": true,
@@ -30,8 +28,14 @@
     },
     "autoload": {
         "classmap": [
-            "app",
-            "middlewares"
+            "src/acl"
+        ],
+        "files": [
+            "src/acl/helpers/helpers.php"
         ]
+    },
+    "require-dev": {
+        "doctrine/coding-standard": "9.0.0",
+        "symfony/var-dumper": "^5.3.6"
     }
 }

@@ -55,7 +55,7 @@ The following dependencies need to be downloaded and installed for ACL Plugin.
 
 #### Example
 ```
-flextype()->get('/my-route', 'MyController:method()')
+app()->get('/my-route', 'MyController:method()')
      ->setName('my.route.name')
      ->add(new AclIsUserLoggedInMiddleware([
                                             'redirect' => 'another.route.name']));
@@ -73,7 +73,7 @@ flextype()->get('/my-route', 'MyController:method()')
 
 #### Example
 ```
-flextype()->get('/my-route', 'MyController:method()')
+app()->get('/my-route', 'MyController:method()')
      ->setName('my.route.name')
      ->add(new AclAccountsIsUserLoggedInRolesInMiddleware([
                                                            'roles' => 'admin, moderator'
@@ -92,7 +92,7 @@ flextype()->get('/my-route', 'MyController:method()')
 
 #### Example
 ```
-flextype()->get('/my-route', 'MyController:method()')
+app()->get('/my-route', 'MyController:method()')
      ->setName('my.route.name')
      ->add(new AclIsUserLoggedInEmailsInMiddleware([
                                                     'emails' => 'jack@flextype.org, jack@flextype.org'
@@ -111,7 +111,7 @@ flextype()->get('/my-route', 'MyController:method()')
 
 #### Example
 ```
-flextype()->get('/my-route', 'MyController:method()')
+app()->get('/my-route', 'MyController:method()')
      ->setName('my.route.name')
      ->add(new AclIsUserLoggedInUuidInMiddleware([
                                                   'uuids' => 'ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2, d549af27-79a0-44f2-b9b1-e82b47bf87e2'
@@ -128,7 +128,7 @@ flextype()->get('/my-route', 'MyController:method()')
 
 #### Example
 ```
-flextype()->get('/my-route', 'MyController:method()')
+app()->get('/my-route', 'MyController:method()')
      ->setName('my.route.name')
      ->add(new AclIsUserNotLoggedInMiddleware([
                                                'redirect' => 'another.route.name']));
@@ -146,7 +146,7 @@ flextype()->get('/my-route', 'MyController:method()')
 
 #### Example
 ```
-flextype()->get('/my-route', 'MyController:method()')
+app()->get('/my-route', 'MyController:method()')
      ->setName('my.route.name')
      ->add(new AclAccountsIsUserLoggedInRolesNotInMiddleware([
                                                               'roles' => 'admin, moderator'
@@ -165,7 +165,7 @@ flextype()->get('/my-route', 'MyController:method()')
 
 #### Example
 ```
-flextype()->get('/my-route', 'MyController:method()')
+app()->get('/my-route', 'MyController:method()')
      ->setName('my.route.name')
      ->add(new AclIsUserLoggedInEmailsNotInMiddleware([
                                                        'emails' => 'jack@flextype.org, sam@flextype.org'
@@ -184,7 +184,7 @@ flextype()->get('/my-route', 'MyController:method()')
 
 #### Example
 ```
-flextype()->get('/my-route', 'MyController:method()')
+app()->get('/my-route', 'MyController:method()')
      ->setName('my.route.name')
      ->add(new AclIsUserLoggedInUuidNotInMiddleware([
                                                      'uuids' => 'ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2, d549af27-79a0-44f2-b9b1-e82b47bf87e2'
@@ -512,7 +512,7 @@ You may restrict access for specific users to your specific code in the PHP.
 #### Run private code for logged in users
 
 ```php
-if (flextype('acl')->isUserLoggedIn()) {
+if (acl()->isUserLoggedIn()) {
     // Private code here..
 }
 ```
@@ -520,7 +520,7 @@ if (flextype('acl')->isUserLoggedIn()) {
 #### Run private content for users with roles: admin and student
 
 ```php
-if (flextype('acl')->isUserLoggedInRolesIn('admin, student')) {
+if (acl()->isUserLoggedInRolesIn('admin, student')) {
     // Private code here..
 }
 ```
@@ -528,7 +528,7 @@ if (flextype('acl')->isUserLoggedInRolesIn('admin, student')) {
 #### Run private code for users with uuids ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2 and d549af27-79a0-44f2-b9b1-e82b47bf87e2
 
 ```php
-if (flextype('acl')->isUserLoggedInUuidIn('ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2, d549af27-79a0-44f2-b9b1-e82b47bf87e2') {
+if (acl()->isUserLoggedInUuidIn('ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2, d549af27-79a0-44f2-b9b1-e82b47bf87e2') {
     // Private content here..
 }
 ```
@@ -536,7 +536,7 @@ if (flextype('acl')->isUserLoggedInUuidIn('ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2,
 #### Run private code for users with emails jack@flextype.org, sam@flextype.org
 
 ```php
-if (flextype('acl')->isUserLoggedInEmailIn('jack@flextype.org, sam@flextype.org')) {
+if (acl()->isUserLoggedInEmailIn('jack@flextype.org, sam@flextype.org')) {
     // Private content here..
 }
 ```
@@ -544,22 +544,22 @@ if (flextype('acl')->isUserLoggedInEmailIn('jack@flextype.org, sam@flextype.org'
 #### Show logged in email
 
 ```php
-echo 'Hello ' . flextype('acl')->getUserLoggedInEmail();
+echo 'Hello ' . acl()->getUserLoggedInEmail();
 ```
 
 #### Show logged in uuid
 
 ```php
-echo 'Hello ' . flextype('acl')->getUserLoggedInEmail();
-echo 'your uuid: ' . flextype('acl')->getUserLoggedInUuid();
+echo 'Hello ' . acl()->getUserLoggedInEmail();
+echo 'your uuid: ' . acl()->getUserLoggedInUuid();
 ```
 
 #### Show logged in roles
 
 ```php
-echo 'Hello ' . flextype('acl')->getUserLoggedInEmail();
-echo 'your uuid: ' . flextype('acl')->getUserLoggedInUuid();
-echo 'and your roles: ' . flextype('acl')->getUserLoggedInRoles();
+echo 'Hello ' . acl()->getUserLoggedInEmail();
+echo 'your uuid: ' . acl()->getUserLoggedInUuid();
+echo 'and your roles: ' . acl()->getUserLoggedInRoles();
 ```
 
 ## LICENSE
