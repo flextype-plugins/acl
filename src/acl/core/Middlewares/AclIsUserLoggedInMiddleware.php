@@ -38,15 +38,15 @@ class AclIsUserLoggedInMiddleware
      * 
      * @return Response
      */
-    public function __invoke(RequestHandler $request, RequestHandler $handler): Response
+    public function __invoke(Request $request, RequestHandler $handler): Response
     {
         if (acl()->isUserLoggedIn()) {
-            $response = $handler->handle($request);
-            return $response;
-        } else {
-            $response = new Response();
-            $response->withHeader('Location', router()->pathFor($this->settings['redirect']));
-            return $response;
+            return $handler->handle($request);
         }
+
+        $response = new Response();
+        $response->withHeader('Location', router()->pathFor($this->settings['redirect']));
+        
+        return $response;
     }
 }
