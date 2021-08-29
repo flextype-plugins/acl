@@ -35,18 +35,16 @@ class AclIsUserLoggedInEmailInMiddleware
      *
      * @param  ServerRequest  $request PSR-7 request
      * @param  RequestHandler $handler PSR-15 request handler
-     * 
-     * @return Response
      */
     public function __invoke(RequestHandler $request, RequestHandler $handler): Response
     {
         if (acl()->isUserLoggedInEmailIn($this->settings['emails'])) {
-            $response = $handler->handle($request);
-            return $response;
-        } else {
-            $response = new Response();
-            $response->withHeader('Location', router()->pathFor($this->settings['redirect']));
-            return $response;
+            return $handler->handle($request);
         }
+
+        $response = new Response();
+        $response->withHeader('Location', router()->pathFor($this->settings['redirect']));
+
+        return $response;
     }
 }

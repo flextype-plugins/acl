@@ -9,8 +9,9 @@ declare(strict_types=1);
 
 namespace Flextype\Plugin\Acl\Middlewares;
 
-use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
+use Slim\Psr7\Response;
 
 use function acl;
 
@@ -22,7 +23,7 @@ class AclIsUserLoggedInMiddleware
     protected $settings;
 
     /**
-     * __construct
+     * Construct
      */
     public function __construct($settings)
     {

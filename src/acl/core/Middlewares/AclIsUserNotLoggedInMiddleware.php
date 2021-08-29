@@ -9,8 +9,9 @@ declare(strict_types=1);
 
 namespace Flextype\Plugin\Acl\Middlewares;
 
-use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
+use Slim\Psr7\Response;
 
 use function acl;
 
@@ -34,18 +35,16 @@ class AclIsUserNotLoggedInMiddleware
      *
      * @param  ServerRequest  $request PSR-7 request
      * @param  RequestHandler $handler PSR-15 request handler
-     * 
-     * @return Response
      */
     public function __invoke(RequestHandler $request, RequestHandler $handler): Response
     {
         if (! acl()->isUserLoggedIn()) {
-            $response = $handler->handle($request);
-            return $response;
-        } else {
-            $response = new Response();
-            $response->withHeader('Location', router()->pathFor($this->settings['redirect']));
-            return $response;
+            return $handler->handle($request);
         }
+
+        $response = new Response();
+        $response->withHeader('Location', router()->pathFor($this->settings['redirect']));
+
+        return $response;
     }
 }
