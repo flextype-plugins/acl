@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Flextype\Plugin\Acl;
 
+use Flextype\Plugin\Twig\Extension\FlextypeTwig;
 use function is_file;
 use function acl;
 
