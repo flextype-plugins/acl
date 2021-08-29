@@ -22,7 +22,7 @@ class AclIsUserLoggedInUuidNotInMiddleware
     protected $settings;
 
     /**
-     * __construct
+     * Construct
      */
     public function __construct($settings)
     {
@@ -30,20 +30,22 @@ class AclIsUserLoggedInUuidNotInMiddleware
     }
 
     /**
-     * __invoke
+     * Invoke
      *
-     * @param Request  $request  PSR7 request
-     * @param Response $response PSR7 response
-     * @param callable $next     Next middleware
+     * @param  ServerRequest  $request PSR-7 request
+     * @param  RequestHandler $handler PSR-15 request handler
+     * 
+     * @return Response
      */
-    public function __invoke(Request $request, Response $response, callable $next): Response
+    public function __invoke(RequestHandler $request, RequestHandler $handler): Response
     {
         if (! acl()->isUserLoggedInUuidIn($this->settings['uuids'])) {
-            $response = $next($request, $response);
+            $response = $handler->handle($request);
+            return $response;
         } else {
-            $response = $response->withRedirect(flextype('router')->pathFor($this->settings['redirect']));
+            $response = new Response();
+            $response->withHeader('Location', router()->pathFor($this->settings['redirect']));
+            return $response;
         }
-
-        return $response;
     }
 }
