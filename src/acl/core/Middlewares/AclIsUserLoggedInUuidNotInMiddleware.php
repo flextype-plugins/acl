@@ -43,7 +43,7 @@ class AclIsUserLoggedInUuidNotInMiddleware
         }
 
         $response = new Response();
-        $response->withHeader('Location', router()->pathFor($this->settings['redirect']));
+        $response->withHeader('Location', urlFor($this->settings['redirect']));
 
         return $response;
     }
