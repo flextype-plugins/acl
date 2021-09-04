@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Flextype\Plugin\Acl;
 
-use Flextype\Plugin\Twig\Extension\FlextypeTwig;
+use Flextype\Plugin\Acl\Twig\Extension\AclTwigExtension;
 use function is_file;
 use function acl;
 
@@ -27,19 +27,19 @@ $aclLoader = require_once $aclAutoload;
 /**
  * Add ACL shortcode
  */
-require_once 'src/acl/core/Shortcodes/AclShortcode.php';
+require_once __DIR__ . '/src/acl/core/Shortcodes/AclShortcode.php';
 
 /**
  * Add ACL entries action
  */
-require_once 'src/acl/core/Entries/Actions/AclAction.php';
+require_once __DIR__ . '/src/acl/core/Entries/Actions/AclAction.php';
 
 /**
- * Add ACL to Flextype container
+ * Add ACL Service
  */
 container()->set('acl', new Acl());
 
 /**
- * Add ACL to Flextype Twig
+ * Add ACL Twig Extension
  */
-FlextypeTwig::macro('acl', acl());
+twig()->addExtension(new AclTwigExtension());
