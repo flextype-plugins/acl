@@ -11,7 +11,7 @@ namespace Flextype\Plugin\Acl\Twig\Extension;
 
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
-use Twig\TwigFunction\TwigFunction;
+use Twig\TwigFunction;
 use Atomastic\Macroable\Macroable;
 
 use function acl;
