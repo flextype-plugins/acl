@@ -447,7 +447,7 @@ You may restrict access for specific users to your specific content inside the T
 #### Show private content for logged in users
 
 ```
-{% if flextype.acl.isUserLoggedIn() %}
+{% if acl().isUserLoggedIn() %}
     Private content here..
 {% else %}
     Public content for users is here...
@@ -457,7 +457,7 @@ You may restrict access for specific users to your specific content inside the T
 #### Show private content for users with roles: admin and student
 
 ```
-{% if flextype.acl.isUserLoggedInRolesIn('admin, student') %}
+{% if acl().isUserLoggedInRolesIn('admin, student') %}
     Private content here..
 {% else %}
     Public content for users is here...
@@ -467,7 +467,7 @@ You may restrict access for specific users to your specific content inside the T
 #### Show private content for users with uuids ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2 and d549af27-79a0-44f2-b9b1-e82b47bf87e2
 
 ```
-{% if flextype.acl.isUserLoggedInUuidIn('ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2, d549af27-79a0-44f2-b9b1-e82b47bf87e2') %}
+{% if acl().isUserLoggedInUuidIn('ea7432a3-b2d5-4b04-b31d-1c5acc7a55e2, d549af27-79a0-44f2-b9b1-e82b47bf87e2') %}
     Private content here..
 {% else %}
     Public content for users is here...
@@ -477,7 +477,7 @@ You may restrict access for specific users to your specific content inside the T
 #### Show private content for users with emails jack@flextype.org, sam@flextype.org
 
 ```
-{% if flextype.acl.isUserLoggedInEmailIn('jack@flextype.org, sam@flextype.org') %}
+{% if acl().isUserLoggedInEmailIn('jack@flextype.org, sam@flextype.org') %}
     Public content for users is here...
 {% else %}
     Public content for users is here...
@@ -487,22 +487,22 @@ You may restrict access for specific users to your specific content inside the T
 #### Show logged in email
 
 ```
-Hello {{ flextype.acl.getUserLoggedInEmail() }}
+Hello {{ acl().getUserLoggedInEmail() }}
 ```
 
 #### Show logged in uuid
 
 ```
-Hello {{ flextype.acl.getUserLoggedInEmail() }},
-your uuid: {{ flextype.acl.getUserLoggedInUuid() }}
+Hello {{ acl().getUserLoggedInEmail() }},
+your uuid: {{ acl().getUserLoggedInUuid() }}
 ```
 
 #### Show logged in roles
 
 ```
-Hello {{ flextype.acl.getUserLoggedInEmail() }},
-your uuid: {{ flextype.acl.getUserLoggedInUuid() }}
-and your roles: {{ flextype.acl.getUserLoggedInRoles() }}
+Hello {{ acl().getUserLoggedInEmail() }},
+your uuid: {{ acl().getUserLoggedInUuid() }}
+and your roles: {{ acl().getUserLoggedInRoles() }}
 ```
 
 ### Restrict access in the PHP
